@@ -6,3 +6,4 @@ export { default as CheckIn } from './components/CheckIn';
 export { default as CheckOut } from './components/CheckOut';
 export { default as AdultsDropdown } from './components/AdultsDropdown';
 export { default as KidsDropdown } from './components/KidsDropdown';
+export { default as RoomDropdown } from './components/RoomDropdown';

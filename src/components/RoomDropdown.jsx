@@ -1,12 +1,23 @@
 import { useState, useRef } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
+import { MdOutlineBedroomChild } from "react-icons/md";
 import useOutsideClick from "../context/useOutsideClick";
 
-const AdultsDropdown = ({ adults, setAdults }) => {
+const RoomDropdown = ({ room, setRoom }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
+  const rooms = [
+    "Superior Room",
+    "Signature Room",
+    "Deluxe Room",
+    "Luxury Room",
+    "Luxury Suite Room",
+    "Deluxe Twin Room",
+    "Luxury King Room",
+    "Deluxe King Room",
+  ];
   useOutsideClick(ref, () => {
     setOpen(false);
   });
@@ -19,12 +30,12 @@ const AdultsDropdown = ({ adults, setAdults }) => {
       >
         <div className="flex text-accent items-center mt-1.5 px-4">
           <Menu.Button className="font-semibold uppercase text-accent text-md pr-1 select-none">
-            adults
+            room
           </Menu.Button>
           <BsChevronDown size="14" />
         </div>
 
-        <p className="text-gray-800 pl-4 text-md">{adults}</p>
+        <p className="text-gray-800 pl-4 text-md">{room}</p>
 
         <Transition
           show={open}
@@ -40,15 +51,15 @@ const AdultsDropdown = ({ adults, setAdults }) => {
             as="ul"
             className="absolute z-40 flex flex-col w-full mt-4 bg-[#fdfdfd] shadow-xl  border-t-[1px] "
           >
-            {[...Array(5).keys()].map((elem, index) => (
+            {rooms.map((elem, index) => (
               <Menu.Item
-                onClick={() => setAdults(elem + 1)}
+                onClick={() => setRoom(elem)}
                 static
                 key="index"
                 as="li"
-                className="flex items-center justify-center w-full h-10 border-b-1 cursor-pointer last-of-type:border-b-0 hover:bg-accent hover:text-white"
+                className="flex items-center justify-center w-full h-10 border-b-1 cursor-pointer last-of-type:border-b-0 hover:bg-accent hover:text-white select-none"
               >
-                {elem + 1} adults
+                {elem}
               </Menu.Item>
             ))}
           </Menu.Items>
@@ -57,5 +68,4 @@ const AdultsDropdown = ({ adults, setAdults }) => {
     </div>
   );
 };
-
-export default AdultsDropdown;
+export default RoomDropdown;
